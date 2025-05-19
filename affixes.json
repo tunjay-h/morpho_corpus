@@ -1,0 +1,38 @@
+{
+    "dır": {
+        "tag": "CAUS",
+        "pos": "suffix"
+    },
+    "ıl": {
+        "tag": "PASS",
+        "pos": "suffix"
+    },
+    "acaq": {
+        "tag": "FUT",
+        "pos": "suffix"
+    },
+    "mış": {
+        "tag": "EVID",
+        "pos": "suffix"
+    },
+    "dı": {
+        "tag": "PAST",
+        "pos": "suffix"
+    },
+    "sa": {
+        "tag": "COND",
+        "pos": "suffix"
+    },
+    "ma": {
+        "tag": "NEG",
+        "pos": "suffix"
+    },
+    "ır": {
+        "tag": "PRS",
+        "pos": "suffix"
+    },
+    "la": {
+        "tag": "INSTR",
+        "pos": "suffix"
+    }
+}
