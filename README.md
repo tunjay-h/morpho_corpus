@@ -104,6 +104,41 @@ morpho_corpus/                # project root
 
 ## Hybrid FST + GNN Morphological Engine Roadmap
 
+---
+
+## GNN Disambiguator: Training & Evaluation Guide
+
+### 1. Prepare Annotated Corpus
+Create a JSON file (e.g., `corpus/corpus.json`) where each entry contains:
+```json
+{
+  "word": "yazdı",
+  "analysis": "yaz+PAST"
+}
+```
+
+### 2. Prepare Tag Vocabulary
+A tag vocabulary file (`data/tag_vocab.json`) is provided. Extend it if needed to cover all tags in your corpus.
+
+### 3. Convert Corpus to GNN Training Data
+Use the provided script to convert your corpus to GNN training format:
+```bash
+python scripts/prepare_gnn_data.py --corpus corpus/corpus.json --out data/gnn_train.jsonl
+```
+
+### 4. Train the GNN Disambiguator
+Train the GNN using the generated data and tag vocab:
+```bash
+python scripts/train_gnn.py --data data/gnn_train.jsonl --tag_vocab data/tag_vocab.json --out models/gnn_model.pt
+```
+
+### 5. Integrate Trained Model
+Place the trained model at the path expected by your engine (update `core/engine.py` if needed).
+
+### 6. Evaluate/Test End-to-End
+See the test script below to verify the hybrid pipeline.
+
+---
 This project aims to combine the precision of Finite State Transducers (FST) with the learning power of Graph Neural Networks (GNN) for robust Azerbaijani morphological analysis.
 
 ### Summary

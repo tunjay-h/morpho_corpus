@@ -17,9 +17,30 @@ class FSTEngine:
 
     def analyze(self, word: str) -> List[Dict]:
         """
-        Simulate FST-based morphological analysis using roots, affixes, and rules from data/.
-        Returns a list of analyses (lemma, tags, segmentation).
+        Analyze a word using HFST via subprocess if fst_bin_path is set; otherwise, use simulated logic.
         """
+        if self.fst_bin_path:
+            import subprocess
+            proc = subprocess.Popen(
+                ['hfst-lookup', self.fst_bin_path],
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                encoding='utf-8'
+            )
+            out, _ = proc.communicate(word + '\n')
+            analyses = []
+            for line in out.splitlines():
+                if '\t' in line:
+                    surface, analysis = line.split('\t')
+                    if analysis.strip() == '':
+                        continue
+                    parts = analysis.strip().split('+')
+                    lemma = parts[0] if parts else word
+                    tags = parts[1:] if len(parts) > 1 else []
+                    analyses.append({'lemma': lemma, 'tags': tags, 'analysis': analysis.strip()})
+            if not analyses:
+                return [{"lemma": word, "tags": ["UNK"], "analysis": word}]
+            return analyses
+        # fallback: simulated logic
         import os, json
         base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
         roots = json.load(open(os.path.join(base_dir, 'roots.json'), encoding='utf-8'))

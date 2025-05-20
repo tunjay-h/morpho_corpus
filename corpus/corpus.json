@@ -1,0 +1,10 @@
+[
+  {"word": "yazdı", "analysis": "yaz+PAST"},
+  {"word": "oxuyacaq", "analysis": "oxu+FUT"},
+  {"word": "gördüm", "analysis": "gör+PAST"},
+  {"word": "kitablar", "analysis": "kitab+PLUR"},
+  {"word": "evdə", "analysis": "ev+LOC"},
+  {"word": "adamın", "analysis": "adam+GEN"},
+  {"word": "uşaqlar", "analysis": "uşaq+PLUR"},
+  {"word": "böyükdür", "analysis": "böyük+CAUS"}
+]

@@ -1,0 +1,42 @@
+Multichar_Symbols +PAST +FUT +NEG +PLUR +LOC +GEN +CAUS
+
+LEXICON Root
+yaz    V;
+oxu    V;
+gör    V;
+get    V;
+al     V;
+ver    V;
+qal    V;
+bax    V;
+düş    V;
+gəl    V;
+kitab  N;
+ev     N;
+adam   N;
+uşaq   N;
+qapı   N;
+
+gözəl  ADJ;
+böyük  ADJ;
+kiçik  ADJ;
+yaxşı  ADJ;
+pis    ADJ;
+
+LEXICON V
++PAST:dı    #;
++FUT:acaq   #;
++NEG:ma     #;
++CAUS:dır   #;
+
+LEXICON N
++PLUR:lar   N2;
++LOC:də     #;
++GEN:ın     #;
+
+LEXICON N2
++LOC:də     #;
++GEN:ın     #;
+
+LEXICON ADJ
++CAUS:dır   #;
