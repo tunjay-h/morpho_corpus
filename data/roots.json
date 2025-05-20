@@ -1,22 +1,22 @@
 {
-    "yaz": {
-        "pos": "VERB",
-        "gloss": "write"
-    },
-    "oxu": {
-        "pos": "VERB",
-        "gloss": "read"
-    },
-    "gör": {
-        "pos": "VERB",
-        "gloss": "see"
-    },
-    "get": {
-        "pos": "VERB",
-        "gloss": "go"
-    },
-    "al": {
-        "pos": "VERB",
-        "gloss": "take"
-    }
+    "yaz": {"pos": "VERB", "gloss": "write"},
+    "oxu": {"pos": "VERB", "gloss": "read"},
+    "gör": {"pos": "VERB", "gloss": "see"},
+    "get": {"pos": "VERB", "gloss": "go"},
+    "al": {"pos": "VERB", "gloss": "take"},
+    "ver": {"pos": "VERB", "gloss": "give"},
+    "qal": {"pos": "VERB", "gloss": "stay"},
+    "bax": {"pos": "VERB", "gloss": "look"},
+    "düş": {"pos": "VERB", "gloss": "fall"},
+    "gəl": {"pos": "VERB", "gloss": "come"},
+    "kitab": {"pos": "NOUN", "gloss": "book"},
+    "ev": {"pos": "NOUN", "gloss": "house"},
+    "adam": {"pos": "NOUN", "gloss": "person"},
+    "uşaq": {"pos": "NOUN", "gloss": "child"},
+    "qapı": {"pos": "NOUN", "gloss": "door"},
+    "gözəl": {"pos": "ADJ", "gloss": "beautiful"},
+    "böyük": {"pos": "ADJ", "gloss": "big"},
+    "kiçik": {"pos": "ADJ", "gloss": "small"},
+    "yaxşı": {"pos": "ADJ", "gloss": "good"},
+    "pis": {"pos": "ADJ", "gloss": "bad"}
 }

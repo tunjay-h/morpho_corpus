@@ -1,14 +1,25 @@
 {
     "valid_order": [
-        "CAUS",              
-        "PASS",              
-        "FUT",               
-        "EVID",              
-        "PAST",              
-        "COND",              
-        "NEG",               
-        "PRS",               
-        "INSTR"              
+        "NEG",
+        "CAUS",
+        "PASS",
+        "FUT",
+        "EVID",
+        "PAST",
+        "PRS",
+        "COND",
+        "PLUR",
+        "POSS1SG",
+        "POSS2SG",
+        "POSS1PL",
+        "POSS2PL",
+        "POSS3PL",
+        "ACC",
+        "DAT",
+        "LOC",
+        "ABL",
+        "GEN",
+        "INSTR"
     ]
 }
 

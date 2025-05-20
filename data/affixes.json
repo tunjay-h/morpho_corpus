@@ -1,38 +1,22 @@
 {
-    "dır": {
-        "tag": "CAUS",
-        "pos": "suffix"
-    },
-    "ıl": {
-        "tag": "PASS",
-        "pos": "suffix"
-    },
-    "acaq": {
-        "tag": "FUT",
-        "pos": "suffix"
-    },
-    "mış": {
-        "tag": "EVID",
-        "pos": "suffix"
-    },
-    "dı": {
-        "tag": "PAST",
-        "pos": "suffix"
-    },
-    "sa": {
-        "tag": "COND",
-        "pos": "suffix"
-    },
-    "ma": {
-        "tag": "NEG",
-        "pos": "suffix"
-    },
-    "ır": {
-        "tag": "PRS",
-        "pos": "suffix"
-    },
-    "la": {
-        "tag": "INSTR",
-        "pos": "suffix"
-    }
+    "dır": {"tag": "CAUS", "pos": "suffix"},
+    "il": {"tag": "PASS", "pos": "suffix"},
+    "acaq": {"tag": "FUT", "pos": "suffix"},
+    "miş": {"tag": "EVID", "pos": "suffix"},
+    "dı": {"tag": "PAST", "pos": "suffix"},
+    "sa": {"tag": "COND", "pos": "suffix"},
+    "ma": {"tag": "NEG", "pos": "suffix"},
+    "ır": {"tag": "PRS", "pos": "suffix"},
+    "la": {"tag": "INSTR", "pos": "suffix"},
+    "lar": {"tag": "PLUR", "pos": "suffix"},
+    "i": {"tag": "ACC", "pos": "suffix"},
+    "ə": {"tag": "DAT", "pos": "suffix"},
+    "də": {"tag": "LOC", "pos": "suffix"},
+    "dən": {"tag": "ABL", "pos": "suffix"},
+    "in": {"tag": "GEN", "pos": "suffix"},
+    "m": {"tag": "POSS1SG", "pos": "suffix"},
+    "n": {"tag": "POSS2SG", "pos": "suffix"},
+    "miz": {"tag": "POSS1PL", "pos": "suffix"},
+    "niz": {"tag": "POSS2PL", "pos": "suffix"},
+    "ləri": {"tag": "POSS3PL", "pos": "suffix"}
 }
