@@ -1,13 +1,151 @@
 # Azerbaijani Morphological Analysis Toolkit
 
-This toolkit provides a complete pipeline for rule-based and ML-based morphological analysis and annotation of Azerbaijani text. It includes modular components for loading lexicons, tokenization, analysis, annotation GUIs, corpus storage, and export utilities.
+A comprehensive, modular, and research-grade toolkit for morphological analysis of Azerbaijani. Supports both rule-based (FST) and machine learning (GNN/ML) approaches, with annotation, training, and export utilities, robust logging, and extensible data/documentation.
 
-## Features
+---
 
-- **Dictionary Loader (`loaders/dictionary_loader.py`)**
-  - Load JSON lexicons for roots, affixes, and rules.
-- **Text Preprocessing (`core/tokenizer.py`)**
-  - Unicode-aware tokenization, normalization, and diacritics removal.
+## 🚀 Project Goals
+- **Accurate morphological analysis** for Azerbaijani, supporting both traditional and neural approaches.
+- **Easy annotation and corpus management** for linguists and researchers.
+- **Extensible, maintainable, and well-documented codebase** for future research and production use.
+- **Transparent, robust logging and error handling** throughout the pipeline.
+
+---
+
+## 🏗️ Architecture & Components
+
+```
+├─ core/          # Core analysis: FST, GNN, ML, tokenization
+├─ db/            # Corpus storage and retrieval
+├─ loaders/       # Lexicon and rule loaders
+├─ export/        # Exporters: CoNLL-U, Excel, JSONL, CSV
+├─ ui/            # Gradio UIs for annotation/training
+├─ scripts/       # CLI scripts for training, grid search, prep
+├─ tests/         # Test scripts (pipeline, models)
+├─ data/          # Lexicons, tag vocab, GNN data, README
+├─ dictionaries/  # Additional dictionaries, README
+├─ corpus/        # User-generated corpus, exports
+├─ requirements.txt / pyproject.toml
+└─ README.md      # This file
+```
+
+- **FST**: Rule-based finite-state transducer for analysis/generation.
+- **GNN/ML**: Neural and classical models for disambiguation/tagging.
+- **Corpus**: JSON-based, user-annotated, versioned.
+- **UIs**: Gradio-based, easy annotation and training.
+- **Exporters**: CoNLL-U, Excel, JSONL, CSV for NLP tasks.
+
+---
+
+## 📝 Major Updates & Changelog
+- **Comprehensive logging** (2025): All modules/scripts log key events, errors, and user actions.
+- **Improved error handling**: Consistent, robust, and user-friendly error messages.
+- **Documentation**: Inline docstrings, module docs, and README updates throughout.
+- **Corpus/data validation**: Added README and schema notes for all resource directories.
+- **Scripts refactor**: All scripts now log progress, errors, and parameter settings.
+
+---
+
+## 📚 Documentation & Logging
+
+### Logging
+- Logging is enabled across the codebase at `INFO` level by default.
+- To change log level/output, modify `logging.basicConfig` in any script/module:
+  ```python
+  import logging
+  logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+  # or to log to file:
+  logging.basicConfig(filename='morpho.log', level=logging.INFO)
+  ```
+- Logs include: data loading/saving, training, exports, annotation, errors, and test results.
+
+### Documentation
+- All modules and scripts are documented with docstrings and comments.
+- See `data/README.md` and `dictionaries/README.md` for data schema and validation.
+- Example usage and expected file formats are provided in relevant READMEs.
+
+---
+
+## 🗂️ Data & Corpus Structure
+
+- **Corpus**: `corpus/corpus.json` (main), `corpus/corpus.conllu` (exported)
+- **Lexicons**: `data/roots.json`, `data/affixes.json`, `data/rules.json`, `data/tag_vocab.json`
+- **GNN Data**: `data/gnn_train.jsonl`
+- **Dictionaries**: `dictionaries/*.json` (see README)
+- **Validation**: All files must be valid UTF-8 JSON/CSV; see directory READMEs for schema.
+
+---
+
+## 🛠️ Scripts & Usage
+
+### Quick Start
+
+1. **Annotate text:**
+   ```bash
+   python -m ui.annotator
+   ```
+   Enter an Azerbaijani sentence, click **Analyze**, edit tags, then **Save to Corpus**.
+
+2. **Train ML tagger:**
+   ```bash
+   python -m ui.trainer
+   ```
+   Trains the ML tagger on the current corpus.
+
+3. **Train GNN model:**
+   ```bash
+   python scripts/train_gnn.py --data data/gnn_train.jsonl --tag_vocab data/tag_vocab.json --out models/gnn.pt
+   ```
+
+4. **Grid search (GNN):**
+   ```bash
+   python scripts/grid_search_gnn.py
+   ```
+
+5. **Export corpus:**
+   ```python
+   from export.exporter import export_to_conllu, export_to_excel, export_to_jsonl, export_to_csv
+   export_to_conllu()
+   export_to_excel()
+   export_to_jsonl()
+   export_to_csv()
+   ```
+
+6. **Run tests:**
+   ```bash
+   python tests/test_hybrid_pipeline.py
+   ```
+
+---
+
+## 👩‍💻 Developer Notes
+- All scripts and modules use Python 3.8+ and standard logging.
+- Add new data/dictionaries with care; update the corresponding README and validate format.
+- Extend with new models or exporters by following the modular structure.
+- Contributions should include docstrings, logging, and test coverage.
+
+---
+
+## 📝 To-Do & Future Work
+- [ ] Expand test coverage for edge cases and error handling
+- [ ] Add web-based annotation interface
+- [ ] Integrate more advanced neural models (e.g., transformers)
+- [ ] Support for additional export formats (e.g., Universal Dependencies XML)
+- [ ] More granular logging configuration (per-module)
+- [ ] Corpus versioning and diff tools
+- [ ] Continuous integration for tests
+
+---
+
+## 🤝 Acknowledgements
+- Azerbaijani linguistics and NLP community
+- Open-source contributors and dataset providers
+
+---
+
+## 📬 Contact & Support
+For questions, feature requests, or bug reports, please open an issue or contact the maintainers.
+
 - **Rule-Based Engine (`core/engine.py`)**
   - Perform morphological analysis using lexicon and valid affix order.
 - **ML Tagger (`core/models.py`)**

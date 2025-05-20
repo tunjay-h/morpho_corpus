@@ -7,8 +7,12 @@ import itertools
 import subprocess
 import json
 import os
+import logging
 
-def run_train(params, data, tag_vocab, out_dir):
+def run_train(params: dict, data: str, tag_vocab: str, out_dir: str) -> str:
+    """
+    Run training subprocess with specified parameters. Logs command and errors.
+    """
     out_path = os.path.join(out_dir, f"model_hd{params['hidden_dim']}_lr{params['lr']}_bs{params['batch_size']}.pt")
     cmd = [
         'python', 'scripts/train_gnn.py',
@@ -21,13 +25,20 @@ def run_train(params, data, tag_vocab, out_dir):
         '--epochs', str(params['epochs']),
         '--val_split', str(params['val_split'])
     ]
-    print('Running:', ' '.join(cmd))
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    print(result.stdout)
-    print(result.stderr)
+    logging.info(f'Running: {" ".join(cmd)}')
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        logging.info(f"stdout: {result.stdout}")
+        if result.stderr:
+            logging.warning(f"stderr: {result.stderr}")
+    except Exception as e:
+        logging.error(f"Failed to run training subprocess: {e}")
     return out_path
 
 def main():
+    """
+    Perform grid search over GNN hyperparameters. Logs progress and errors.
+    """
     param_grid = {
         'hidden_dim': [32, 64],
         'lr': [1e-2, 1e-3],
@@ -39,9 +50,11 @@ def main():
     tag_vocab = 'data/tag_vocab.json'
     out_dir = 'models/'
     os.makedirs(out_dir, exist_ok=True)
-    for combo in itertools.product(*param_grid.values()):
-        params = dict(zip(param_grid.keys(), combo))
-        run_train(params, data, tag_vocab, out_dir)
+    for params in itertools.product(*param_grid.values()):
+        param_dict = dict(zip(param_grid.keys(), params))
+        logging.info(f"Testing params: {param_dict}")
+        run_train(param_dict, data, tag_vocab, out_dir)
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     main()

@@ -29,21 +29,33 @@ def load_examples(data_path: str, tag_vocab: Dict[str, int]):
             examples.append(graph)
     return examples
 
-def train(model, loader, epochs=10, lr=1e-3):
+def train(model, train_loader, val_loader=None, epochs=10, lr=1e-3):
+    """Train the MorphoGNN model with logging."""
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     loss_fn = torch.nn.CrossEntropyLoss()
     for epoch in range(epochs):
         model.train()
         total_loss = 0
-        for batch in loader:
+        for batch in train_loader:
             optimizer.zero_grad()
             out = model(batch.x, batch.edge_index)
-            # out: (num_nodes,) per graph; gold: batch.y (index of correct)
             loss = loss_fn(out.unsqueeze(0), batch.y)
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
-        print(f"Epoch {epoch+1}: Loss {total_loss/len(loader):.4f}")
+        logging.info(f"Epoch {epoch+1}: Train Loss {total_loss/len(train_loader):.4f}")
+        if val_loader:
+            model.eval()
+            correct = 0
+            total = 0
+            with torch.no_grad():
+                for batch in val_loader:
+                    out = model(batch.x, batch.edge_index)
+                    pred = out.argmax().item()
+                    if pred == batch.y.item():
+                        correct += 1
+                    total += 1
+            logging.info(f"  Validation Accuracy: {100.0 * correct / max(1,total):.2f}%")
 
 if __name__ == "__main__":
     import argparse
@@ -51,11 +63,11 @@ if __name__ == "__main__":
     parser.add_argument('--data', required=True, help='Path to training data (JSONL)')
     parser.add_argument('--tag_vocab', required=True, help='Path to tag vocab JSON')
     parser.add_argument('--out', required=True, help='Path to save model')
-    parser.add_argument('--hidden_dim', type=int, default=64)
-    parser.add_argument('--lr', type=float, default=1e-3)
-    parser.add_argument('--batch_size', type=int, default=1)
-    parser.add_argument('--epochs', type=int, default=10)
-    parser.add_argument('--val_split', type=float, default=0.2)
+    parser.add_argument('--hidden_dim', type=int, default=64, help='Hidden dimension of the model')
+    parser.add_argument('--lr', type=float, default=1e-3, help='Learning rate')
+    parser.add_argument('--batch_size', type=int, default=1, help='Batch size')
+    parser.add_argument('--epochs', type=int, default=10, help='Number of epochs')
+    parser.add_argument('--val_split', type=float, default=0.2, help='Validation split proportion')
     args = parser.parse_args()
 
     tag_vocab = load_tag_vocab(args.tag_vocab)

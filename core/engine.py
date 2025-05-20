@@ -10,21 +10,26 @@ from core.gnn_disambiguator import GNNDisambiguator
 import os, json
 
 import logging
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
+
 fst_path = os.path.join(os.path.dirname(__file__), '..', 'fst', 'az.hfst')
 if os.path.exists(fst_path):
-    print(f"[INFO] Using compiled FST: {fst_path}")
+    logging.info(f"Using compiled FST: {fst_path}")
     fst_engine = FSTEngine(fst_bin_path=fst_path)
 else:
-    print("[INFO] Compiled FST not found, using simulated FST engine.")
+    logging.warning("Compiled FST not found, using simulated FST engine.")
     fst_engine = FSTEngine(fst_bin_path=None)
+
 # Load tag vocab for GNNDisambiguator (assume it's at data/tag_vocab.json)
 tag_vocab_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'tag_vocab.json')
 if os.path.exists(tag_vocab_path):
     with open(tag_vocab_path, encoding='utf-8') as f:
         tag_vocab = json.load(f)
     gnn_disamb = GNNDisambiguator(tag_vocab)
+    logging.info("GNNDisambiguator loaded with tag vocab.")
 else:
     gnn_disamb = None
+    logging.warning("No tag vocab found; GNN disambiguator not available.")
 
 
 def analyze_word(word: str) -> List[Dict]:

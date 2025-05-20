@@ -6,10 +6,14 @@ This module takes FST candidate analyses and selects the most probable one using
 """
 import torch
 import torch.nn as nn
+import logging
 from torch_geometric.data import Data, Batch
 from typing import List, Dict, Any
 
 class MorphoGNN(nn.Module):
+    """
+    GNN model for morphological disambiguation.
+    """
     def __init__(self, num_morph_tags: int, hidden_dim: int = 64):
         super().__init__()
         from torch_geometric.nn import GCNConv
@@ -33,7 +37,11 @@ class GNNDisambiguator:
         self.tag_vocab = tag_vocab
         self.model = MorphoGNN(num_morph_tags=len(tag_vocab))
         if model_path:
-            self.model.load_state_dict(torch.load(model_path, map_location='cpu'))
+            try:
+                self.model.load_state_dict(torch.load(model_path, map_location='cpu'))
+                logging.info(f"Loaded GNN model from {model_path}")
+            except Exception as e:
+                logging.error(f"Failed to load GNN model from {model_path}: {e}")
         self.model.eval()
 
     def build_graph(self, analyses: List[Dict[str, Any]], context: List[str] = None) -> Data:
@@ -59,12 +67,18 @@ class GNNDisambiguator:
     def disambiguate(self, analyses: List[Dict[str, Any]], context: List[str] = None) -> Dict[str, Any]:
         """
         Given candidate analyses, return the most probable one.
+        Logs the process and result.
         """
-        graph = self.build_graph(analyses, context)
-        with torch.no_grad():
-            scores = self.model(graph.x, graph.edge_index)
-        best_idx = scores.argmax().item()
-        return analyses[best_idx]
+        try:
+            graph = self.build_graph(analyses, context)
+            with torch.no_grad():
+                scores = self.model(graph.x, graph.edge_index)
+            best_idx = scores.argmax().item()
+            logging.info(f"GNN disambiguation scores: {scores.tolist()}, best idx: {best_idx}")
+            return analyses[best_idx]
+        except Exception as e:
+            logging.error(f"Error during GNN disambiguation: {e}")
+            return analyses[0]
 
 # Example usage (with dummy tag vocab):
 # tag_vocab = {"VERB": 0, "NOUN": 1, "ADJ": 2, "PLUR": 3, ...}

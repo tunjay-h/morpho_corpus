@@ -8,29 +8,46 @@ from core.engine import analyze_word
 from db.corpus import add_entry
 
 
+import logging
+
 def analyze_text(sentence: str):
-    """Tokenize and analyze sentence, return table of word/tag pairs."""
-    tokens = prepare_input(sentence)
-    table = []
-    for tok in tokens:
-        analyses = analyze_word(tok)
-        if analyses and "error" not in analyses[0]:
-            tags = analyses[0].get("tags", [])
-        else:
-            tags = []
-        table.append([tok, "+".join(tags)])
-    return table
+    """
+    Tokenize and analyze sentence, return table of word/tag pairs.
+    Logs the process and errors.
+    """
+    try:
+        tokens = prepare_input(sentence)
+        table = []
+        for tok in tokens:
+            analyses = analyze_word(tok)
+            if analyses and "error" not in analyses[0]:
+                tags = analyses[0].get("tags", [])
+            else:
+                tags = []
+            table.append([tok, "+".join(tags)])
+        logging.info(f"Analyzed sentence: '{sentence[:40]}...' -> {table}")
+        return table
+    except Exception as e:
+        logging.error(f"Failed to analyze sentence '{sentence}': {e}")
+        return []
 
 
 def save_to_corpus(sentence: str, data):
-    """Save edited annotations to corpus."""
-    tokens = []
-    for row in data:
-        word, tag_str = row
-        tags = tag_str.split("+") if tag_str else []
-        tokens.append({"word": word, "tags": tags})
-    add_entry(sentence, tokens)
-    return "Annotation saved to corpus."
+    """
+    Save edited annotations to corpus. Logs the operation and errors.
+    """
+    try:
+        tokens = []
+        for row in data:
+            word, tag_str = row
+            tags = tag_str.split("+") if tag_str else []
+            tokens.append({"word": word, "tags": tags})
+        add_entry(sentence, tokens)
+        logging.info(f"Saved annotation for: '{sentence[:40]}...' with {len(tokens)} tokens.")
+        return "Annotation saved to corpus."
+    except Exception as e:
+        logging.error(f"Failed to save annotation for '{sentence}': {e}")
+        return "Failed to save annotation."
 
 
 with gr.Blocks() as app:
