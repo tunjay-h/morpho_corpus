@@ -38,13 +38,17 @@ class FSTEngine:
                 analyses = []
                 for line in out.splitlines():
                     if '\t' in line:
-                        surface, analysis = line.split('\t')
+                        try:
+                            surface, analysis = line.split('\t', 1)
+                        except ValueError:
+                            logging.warning(f"Malformed FST output line (expected one tab): {line}")
+                            continue
                         if analysis.strip() == '':
                             continue
-                        parts = analysis.strip().split('+')
+                        parts = analysis.strip().replace('\t', '+').split('+')
                         lemma = parts[0] if parts else word
                         tags = parts[1:] if len(parts) > 1 else []
-                        analyses.append({'lemma': lemma, 'tags': tags, 'analysis': analysis.strip()})
+                        analyses.append({'lemma': lemma, 'tags': tags, 'analysis': analysis.strip().replace('\t', '+')})
                 if not analyses:
                     logging.info(f"No FST analysis for '{word}', returning UNK.")
                     return [{"lemma": word, "tags": ["UNK"], "analysis": word}]
