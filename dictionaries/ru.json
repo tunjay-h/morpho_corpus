@@ -1,0 +1,110 @@
+{
+  "книга": {
+    "POS": "NOUN",
+    "Features": {
+      "Gender": "Fem",
+      "Number": "Sing",
+      "Case": "Nom"
+    }
+  },
+  "читает": {
+    "POS": "VERB",
+    "Features": {
+      "Tense": "Pres",
+      "Person": "3",
+      "Number": "Sing"
+    }
+  },
+  "красивый": {
+    "POS": "ADJ",
+    "Features": {
+      "Degree": "Pos",
+      "Gender": "Masc",
+      "Case": "Nom"
+    }
+  },
+  "дома": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "вы": {
+    "POS": "PRON",
+    "Features": {"Person": "2", "Number": "Plur"}
+  },
+  "они": {
+    "POS": "PRON",
+    "Features": {"Person": "3", "Number": "Plur"}
+  },
+  "быстрый": {
+    "POS": "ADJ",
+    "Features": {"Degree": "Pos", "Gender": "Masc"}
+  },
+  "медленный": {
+    "POS": "ADJ",
+    "Features": {"Degree": "Pos", "Gender": "Masc"}
+  },
+  "быстро": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "всегда": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "но": {
+    "POS": "CONJ",
+    "Features": {}
+  },
+  "потому что": {
+    "POS": "CONJ",
+    "Features": {}
+  },
+  "два": {
+    "POS": "NUM",
+    "Features": {"NumType": "Card"}
+  },
+  "три": {
+    "POS": "NUM",
+    "Features": {"NumType": "Card"}
+  },
+  "иду": {
+    "POS": "VERB",
+    "Features": {"Tense": "Pres", "Person": "1"}
+  },
+  "пришёл": {
+    "POS": "VERB",
+    "Features": {"Tense": "Past", "Person": "1", "Gender": "Masc"}
+  },
+  "берёт": {
+    "POS": "VERB",
+    "Features": {"Tense": "Pres", "Person": "3"}
+  },
+  "взял": {
+    "POS": "VERB",
+    "Features": {"Tense": "Past", "Person": "3", "Gender": "Masc"}
+  },
+  "дверь": {
+    "POS": "NOUN",
+    "Features": {"Gender": "Fem", "Number": "Sing", "Case": "Nom"}
+  },
+  "двери": {
+    "POS": "NOUN",
+    "Features": {"Gender": "Fem", "Number": "Plur", "Case": "Nom"}
+  },
+  "хороший": {
+    "POS": "ADJ",
+    "Features": {"Degree": "Pos", "Gender": "Masc"}
+  },
+  "плохой": {
+    "POS": "ADJ",
+    "Features": {"Degree": "Pos", "Gender": "Masc"}
+  },
+  "сейчас": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "здесь": {
+    "POS": "ADV",
+    "Features": {}
+  }
+}

@@ -1,4 +1,109 @@
 {
-  "kitab": {"POS": "NOUN", "Features": {"Case": "Nom", "Number": "Sing"}},
-  "oxuyur": {"POS": "VERB", "Features": {"Tense": "Pres", "Person": "3"}}
+  "kitab": {
+    "POS": "NOUN",
+    "Features": {
+      "Case": "Nom",
+      "Number": "Sing"
+    }
+  },
+  "kitablar": {
+    "POS": "NOUN",
+    "Features": {
+      "Case": "Nom",
+      "Number": "Plur"
+    }
+  },
+  "ev": {
+    "POS": "NOUN",
+    "Features": {
+      "Case": "Nom",
+      "Number": "Sing"
+    }
+  },
+  "evdə": {
+    "POS": "NOUN",
+    "Features": {
+      "Case": "Loc",
+      "Number": "Sing"
+    }
+  },
+  "adam": {
+    "POS": "NOUN",
+    "Features": {
+      "Case": "Nom",
+      "Number": "Sing"
+    }
+  },
+  "adamlar": {
+    "POS": "NOUN",
+    "Features": {
+      "Case": "Nom",
+      "Number": "Plur"
+    }
+  },
+  "oxuyur": {
+    "POS": "VERB",
+    "Features": {
+      "Tense": "Pres",
+      "Person": "3"
+    }
+  },
+  "oxudum": {
+    "POS": "VERB",
+    "Features": {
+      "Tense": "Past",
+      "Person": "1"
+    }
+  },
+  "gedirəm": {
+    "POS": "VERB",
+    "Features": {
+      "Tense": "Pres",
+      "Person": "1"
+    }
+  },
+  "gözəl": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "böyük": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "kiçik": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "o": {
+    "POS": "PRON",
+    "Features": {
+      "Person": "3",
+      "Number": "Sing"
+    }
+  },
+  "mən": {
+    "POS": "PRON",
+    "Features": {
+      "Person": "1",
+      "Number": "Sing"
+    }
+  },
+  "və": {
+    "POS": "CONJ",
+    "Features": {}
+  },
+  "bir": {
+    "POS": "NUM",
+    "Features": {
+      "NumType": "Card"
+    }
+  },
+  "ilə": {
+    "POS": "ADP",
+    "Features": {}
+  },
+  "bu": {
+    "POS": "DET",
+    "Features": {}
+  }
 }

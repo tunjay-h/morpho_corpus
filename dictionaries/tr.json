@@ -21,9 +21,86 @@
   },
   "evde": {
     "POS": "NOUN",
-    "Features": {
-      "Case": "Loc",
-      "Number": "Sing"
-    }
+    "Features": {"Case": "Loc", "Number": "Sing"}
+  },
+  "siz": {
+    "POS": "PRON",
+    "Features": {"Person": "2", "Number": "Plur"}
+  },
+  "onlar": {
+    "POS": "PRON",
+    "Features": {"Person": "3", "Number": "Plur"}
+  },
+  "hızlı": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "yavaş": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "çabuk": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "her zaman": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "ama": {
+    "POS": "CONJ",
+    "Features": {}
+  },
+  "çünkü": {
+    "POS": "CONJ",
+    "Features": {}
+  },
+  "iki": {
+    "POS": "NUM",
+    "Features": {"NumType": "Card"}
+  },
+  "üç": {
+    "POS": "NUM",
+    "Features": {"NumType": "Card"}
+  },
+  "geliyorum": {
+    "POS": "VERB",
+    "Features": {"Tense": "Pres", "Person": "1"}
+  },
+  "geldim": {
+    "POS": "VERB",
+    "Features": {"Tense": "Past", "Person": "1"}
+  },
+  "alıyor": {
+    "POS": "VERB",
+    "Features": {"Tense": "Pres", "Person": "3"}
+  },
+  "aldı": {
+    "POS": "VERB",
+    "Features": {"Tense": "Past", "Person": "3"}
+  },
+  "kapı": {
+    "POS": "NOUN",
+    "Features": {"Case": "Nom", "Number": "Sing"}
+  },
+  "kapılar": {
+    "POS": "NOUN",
+    "Features": {"Case": "Nom", "Number": "Plur"}
+  },
+  "iyi": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "kötü": {
+    "POS": "ADJ",
+    "Features": {}
+  },
+  "şimdi": {
+    "POS": "ADV",
+    "Features": {}
+  },
+  "burada": {
+    "POS": "ADV",
+    "Features": {}
   }
 }

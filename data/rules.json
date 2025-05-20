@@ -1,0 +1,14 @@
+{
+    "valid_order": [
+        "CAUS",              
+        "PASS",              
+        "FUT",               
+        "EVID",              
+        "PAST",              
+        "COND",              
+        "NEG",               
+        "PRS",               
+        "INSTR"              
+    ]
+}
+
